@@ -6,34 +6,34 @@ describe('snabbdom', function () {
     it('can be used as a jsxFactory method', function () {
       const vnode = <div title="Hello World">Hello World</div>;
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'div',
         data: { title: 'Hello World' },
         text: 'Hello World',
-      }));
+      });
     });
 
     it('creates text property for text only child', function () {
       const vnode = <div>foo bar</div>;
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'div',
         data: {},
         text: 'foo bar',
-      }));
+      });
     });
 
     it('creates an array of children for multiple children', function () {
       const vnode = <div>{'foo'}{'bar'}</div>;
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'div',
         data: {},
         children: [
           { text: 'foo' },
           { text: 'bar' },
         ]
-      }));
+      });
     });
 
     it('flattens children', function () {
@@ -45,7 +45,7 @@ describe('snabbdom', function () {
         </section>
       );
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'section',
         data: {},
         children: [
@@ -54,7 +54,7 @@ describe('snabbdom', function () {
           { sel: 'span', data: {}, text: 'part1' },
           { sel: 'span', data: {}, text: 'part2' },
         ],
-      }));
+      });
     });
 
     it('removes falsey children', function () {
@@ -76,7 +76,7 @@ describe('snabbdom', function () {
         </div>
       );
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'div',
         data: {},
         children: [
@@ -86,7 +86,7 @@ describe('snabbdom', function () {
           { text: 'Logged In: ' },
           { text: 'true' },
         ],
-      }));
+      });
     });
 
     it('works with a function component', function () {
@@ -100,7 +100,7 @@ describe('snabbdom', function () {
         </div>
       );
 
-      assert.strictEqual(JSON.stringify(vnode), JSON.stringify({
+      assert.deepStrictEqual(vnode, {
         sel: 'div',
         data: {},
         children: [
@@ -112,7 +112,7 @@ describe('snabbdom', function () {
           { sel: 'span', data: {}, text: 'charm!' },
           { text: '💃🕺🎉' },
         ],
-      }));
+      });
     })
   });
 });
